@@ -1,0 +1,29 @@
+﻿@using System.Net;
+@{
+    // Create an HttpClient instance.
+    var client = new HttpClient();
+
+    // Set the base URL of the web API.
+    client.BaseAddress = new Uri("https://localhost:7023/products");
+
+    // Make a GET request to the web API.
+    var response = client.GetAsync("/").Result;
+
+    // Check the status code of the response.
+    if (response.StatusCode == HttpStatusCode.OK)
+    {
+        // The request was successful.
+        // Get the response data.
+        var data = response.Content.ReadAsStringAsync().Result;
+
+        // Render the HTML output.
+        <h1>The response data is:</h1>
+        <p>@data</p>
+    }
+    else
+    {
+        // The request failed.
+        // Handle the error.
+    }
+}
+
